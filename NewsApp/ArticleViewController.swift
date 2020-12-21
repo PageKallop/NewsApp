@@ -8,8 +8,12 @@
 import Foundation
 import UIKit
 
-class ArticleViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ArticleViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NewsManagerDelegate {
 
+    
+    var newsManager = NewsManager()
+    
+    var theArticles = [Articles]()
   
     @IBOutlet weak var articleTableView: UITableView!
     
@@ -17,6 +21,8 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        newsManager.delegate = self 
         
        articleTableView.register(UINib(nibName: "ArticleCell", bundle: nil), forCellReuseIdentifier: "ArticleCustomCell")
         print("load cell")
@@ -42,6 +48,16 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.descArticle.text = "what a world"
        
         return cell 
+    }
+    
+    func didUpdateNews(){
+        
+        
+    }
+    
+    func didFailWithError(){
+        
+        
     }
     
     

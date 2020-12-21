@@ -19,5 +19,6 @@ struct Articles: Codable {
     var author: String?
     var title: String?
     var description: String?
-    var url: String? 
+    var url: String?
+    var content: String?
 }
