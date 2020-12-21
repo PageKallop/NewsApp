@@ -5,6 +5,7 @@
 //  Created by Page Kallop on 12/21/20.
 //
 
+import Foundation
 import UIKit
 
 class ArticleViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -17,12 +18,13 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        articleTableView.delegate = self
-        articleTableView.delegate = self
+       articleTableView.register(UINib(nibName: "ArticleCell", bundle: nil), forCellReuseIdentifier: "ArticleCustomCell")
+        print("load cell")
         
-        articleTableView.register(UINib(nibName: "ArticleCell", bundle: nil), forCellReuseIdentifier: "ArticleCustomCell")
+        articleTableView.dataSource = self
+        articleTableView.delegate = self
+
     }
-    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -33,6 +35,11 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = articleTableView.dequeueReusableCell(withIdentifier: "ArticleCustomCell", for: indexPath) as! ArticleCell
+        
+        print("load cell")
+        
+        cell.titleArticle.text = "hi"
+        cell.descArticle.text = "what a world"
        
         return cell 
     }
