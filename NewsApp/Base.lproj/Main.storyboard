@@ -32,11 +32,54 @@
                     </view>
                     <connections>
                         <outlet property="articleTableView" destination="ETr-i9-ygf" id="nc8-Zy-f6t"/>
+                        <segue destination="Ome-6m-nqA" kind="presentation" identifier="ToStory" id="5b4-rZ-MTR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-33.333333333333336" y="88.392857142857139"/>
+        </scene>
+        <!--News Story View Controller-->
+        <scene sceneID="bQi-8M-bGZ">
+            <objects>
+                <viewController id="Ome-6m-nqA" customClass="NewsStoryViewController" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hfK-oM-7N9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2U-GF-j3c">
+                                <rect key="frame" x="20" y="29" width="374" height="28"/>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afm-ab-zS0">
+                                <rect key="frame" x="20" y="100" width="374" height="676"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="LX0-m9-tvO"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="LX0-m9-tvO" firstAttribute="bottom" secondItem="afm-ab-zS0" secondAttribute="bottom" constant="32" id="5VW-xc-Xfo"/>
+                            <constraint firstItem="LX0-m9-tvO" firstAttribute="trailing" secondItem="x2U-GF-j3c" secondAttribute="trailing" constant="20" id="BSy-Ra-MIL"/>
+                            <constraint firstItem="afm-ab-zS0" firstAttribute="top" secondItem="x2U-GF-j3c" secondAttribute="bottom" constant="43" id="Eto-Ku-xfQ"/>
+                            <constraint firstItem="afm-ab-zS0" firstAttribute="leading" secondItem="LX0-m9-tvO" secondAttribute="leading" constant="20" id="bwQ-rH-xty"/>
+                            <constraint firstItem="LX0-m9-tvO" firstAttribute="trailing" secondItem="afm-ab-zS0" secondAttribute="trailing" constant="20" id="cZv-9B-oNF"/>
+                            <constraint firstItem="x2U-GF-j3c" firstAttribute="top" secondItem="LX0-m9-tvO" secondAttribute="top" constant="29" id="go5-FR-pnA"/>
+                            <constraint firstItem="x2U-GF-j3c" firstAttribute="leading" secondItem="LX0-m9-tvO" secondAttribute="leading" constant="20" id="jui-5I-XG8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="newsStoryLabel" destination="afm-ab-zS0" id="lOD-yd-Tli"/>
+                        <outlet property="newsTitleLabel" destination="x2U-GF-j3c" id="cKT-JP-xNL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pfj-yZ-IaS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1005.7971014492755" y="87.723214285714278"/>
         </scene>
     </scenes>
     <resources>

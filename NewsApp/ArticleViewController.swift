@@ -14,6 +14,7 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
     var newsManager = NewsManager()
     
     var theArticles = [Articles]()
+    
   
     @IBOutlet weak var articleTableView: UITableView!
     
@@ -22,32 +23,60 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        newsManager.delegate = self 
+        
+    
+        
+        newsManager.delegate = self
+        
+        articleTableView.dataSource = self
+        articleTableView.delegate = self
         
        articleTableView.register(UINib(nibName: "ArticleCell", bundle: nil), forCellReuseIdentifier: "ArticleCustomCell")
         print("load cell")
         
-        articleTableView.dataSource = self
-        articleTableView.delegate = self
+        newsManager.getNews {
+            data in
+            self.theArticles = data
+            
+            DispatchQueue.main.async {
+                self.articleTableView.reloadData()
+            }
+        }
 
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1 
+        return theArticles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = articleTableView.dequeueReusableCell(withIdentifier: "ArticleCustomCell", for: indexPath) as! ArticleCell
         
-        print("load cell")
+        let theNews = theArticles[indexPath.row]
         
-        cell.titleArticle.text = "hi"
-        cell.descArticle.text = "what a world"
+        cell.titleArticle?.text = theNews.title
+        cell.descArticle.text = theNews.description
+        cell.imageArticle.load(urlString: theNews.urlToImage!)
        
         return cell 
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "ToStory", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let destinationVC = segue.destination as! NewsStoryViewController
+        
+        if let indexPath = articleTableView.indexPathForSelectedRow {
+            destinationVC.selectedCategory = theArticles[indexPath.row]
+            
+        }
     }
     
     func didUpdateNews(){
@@ -60,8 +89,24 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
+}
+
+extension UIImageView {
+    func load(urlString: String){
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        DispatchQueue.global().async {
+            [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
     
-
-
 }
 

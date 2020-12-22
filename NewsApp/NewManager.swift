@@ -22,11 +22,10 @@ struct NewsManager {
     mutating func getNews(comp : @escaping ([Articles]) ->()) {
         
         let newsURL = URL(string: "https://newsapi.org/v2/top-headlines?sources=techcrunch&sortBy=latest&apiKey=")
-        print(newsURL)
-        
+      
         URLSession.shared.dataTask(with: newsURL!) { (data, responce, error) in
             if error != nil {
-                print(error)
+                print(error!)
                 return
             }
             do {
