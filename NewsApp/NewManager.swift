@@ -13,16 +13,16 @@ protocol NewsManagerDelegate {
 }
 
 struct NewsManager {
-    
+    //sets delegate method to be called
     var delegate: NewsManagerDelegate?
     
     var theNews = [Articles]()
     
     
     mutating func getNews(comp : @escaping ([Articles]) ->()) {
-        
+        //creates URL string
         let newsURL = URL(string: "https://newsapi.org/v2/top-headlines?sources=techcrunch&sortBy=latest&apiKey=")
-      
+        // creating URLSessions
         URLSession.shared.dataTask(with: newsURL!) { (data, responce, error) in
             if error != nil {
                 print(error!)

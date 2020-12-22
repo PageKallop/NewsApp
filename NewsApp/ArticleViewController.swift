@@ -22,18 +22,17 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-    
-        
+        //sets itself to weather manager delegate
         newsManager.delegate = self
         
         articleTableView.dataSource = self
         articleTableView.delegate = self
         
+        
+        //registers the article cell nib
        articleTableView.register(UINib(nibName: "ArticleCell", bundle: nil), forCellReuseIdentifier: "ArticleCustomCell")
         
-        
+        // brings over the data from the selected cell
         newsManager.getNews {
             data in
             self.theArticles = data
@@ -45,18 +44,18 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
 
     }
     
-    
+    // table view delegate methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return theArticles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        //uses the custom cell xb
         let cell = articleTableView.dequeueReusableCell(withIdentifier: "ArticleCustomCell", for: indexPath) as! ArticleCell
         
         let theNews = theArticles[indexPath.row]
-        
+        //populates the UIlabels and UIImage
         cell.titleArticle?.text = theNews.title
         cell.descArticle.text = theNews.description
         cell.imageArticle.load(urlString: theNews.urlToImage!)
@@ -65,10 +64,10 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        //identifies the seugue to be used
         performSegue(withIdentifier: "ToStory", sender: self)
     }
-    
+    //creates segue to NewsStoryVC from selected cell 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let destinationVC = segue.destination as! NewsStoryViewController
@@ -78,12 +77,12 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
             
         }
     }
-    
+    //protocall method
     func didUpdateNews(){
         
         
     }
-    
+    //protocall method
     func didFailWithError(){
         
         
@@ -92,10 +91,13 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
 }
 
 extension UIImageView {
+    
+    //creates method to get image
     func load(urlString: String){
         guard let url = URL(string: urlString) else {
             return
         }
+
         DispatchQueue.global().async {
             [weak self] in
             if let data = try? Data(contentsOf: url) {

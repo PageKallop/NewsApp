@@ -8,6 +8,7 @@
 import UIKit
 
 class ArticleCell: UITableViewCell {
+   
 
     @IBOutlet weak var imageArticle: UIImageView!
     
@@ -21,15 +22,12 @@ class ArticleCell: UITableViewCell {
         super.awakeFromNib()
         
         
-        
-        
-        print("loaded cell")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+    
     }
     
 }

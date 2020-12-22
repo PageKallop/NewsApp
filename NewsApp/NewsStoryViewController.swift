@@ -10,10 +10,12 @@ import UIKit
 
 class NewsStoryViewController: UIViewController, NewsManagerDelegate {
     
+    
     var newsManager = NewsManager()
     
     var theArticles = [Articles]()
     
+    //allows data to be passed over through tableview cell
     var selectedCategory : Articles? {
         
         didSet {
@@ -37,15 +39,16 @@ class NewsStoryViewController: UIViewController, NewsManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //makes the textview uneditable
         storyView.isEditable = false
-        
+        //sets itself to weather manager delegate
         newsManager.delegate = self
         
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        //loads UI items with data
         newsTitleLabel.text = selectedCategory!.title
 
         storyView.text = selectedCategory?.content
@@ -57,17 +60,13 @@ class NewsStoryViewController: UIViewController, NewsManagerDelegate {
         
     }
     
-    
+    //protocall method
     func didUpdateNews(){
         
-      
-       
-        
     }
-    
+    //protocall method
     func didFailWithError(){
         
-        
-    }
+        }
     
 }
