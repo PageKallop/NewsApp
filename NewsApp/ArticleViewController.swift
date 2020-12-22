@@ -32,7 +32,7 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
         articleTableView.delegate = self
         
        articleTableView.register(UINib(nibName: "ArticleCell", bundle: nil), forCellReuseIdentifier: "ArticleCustomCell")
-        print("load cell")
+        
         
         newsManager.getNews {
             data in

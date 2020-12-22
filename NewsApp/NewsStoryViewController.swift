@@ -25,13 +25,19 @@ class NewsStoryViewController: UIViewController, NewsManagerDelegate {
    
     @IBOutlet weak var newsTitleLabel: UILabel!
     
-    @IBOutlet weak var newsStoryLabel: UILabel!
+    
+    @IBOutlet weak var storyView: UITextView!
+    
+    
+   
+    @IBOutlet weak var imageArticle: UIImageView!
+    
+    @IBOutlet weak var authName: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        newsStoryLabel.sizeToFit()
-        newsStoryLabel.numberOfLines = 0 
+        storyView.isEditable = false
         
         newsManager.delegate = self
         
@@ -41,7 +47,14 @@ class NewsStoryViewController: UIViewController, NewsManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         
         newsTitleLabel.text = selectedCategory!.title
-        newsStoryLabel.text = selectedCategory!.content
+
+        storyView.text = selectedCategory?.content
+        
+        authName.text = selectedCategory?.author
+        
+        imageArticle.load(urlString: (selectedCategory?.urlToImage)!)
+      
+        
     }
     
     

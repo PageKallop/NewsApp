@@ -31,7 +31,7 @@ struct NewsManager {
             do {
                 let results = try JSONDecoder().decode(NewsData.self, from: data!)
                 comp(results.articles)
-                print(results.articles)
+                
             } catch {
                 print("error")
             }
