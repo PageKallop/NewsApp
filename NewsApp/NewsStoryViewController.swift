@@ -62,7 +62,7 @@ class NewsStoryViewController: UIViewController, NewsManagerDelegate {
     
     //protocall method
     func didUpdateNews(){
-        
+    
     }
     //protocall method
     func didFailWithError(){
@@ -70,3 +70,5 @@ class NewsStoryViewController: UIViewController, NewsManagerDelegate {
         }
     
 }
+
+

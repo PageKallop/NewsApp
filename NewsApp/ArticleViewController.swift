@@ -14,7 +14,7 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
     var newsManager = NewsManager()
     
     var theArticles = [Articles]()
-    
+
   
     @IBOutlet weak var articleTableView: UITableView!
     
@@ -22,6 +22,8 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         //sets itself to weather manager delegate
         newsManager.delegate = self
         
@@ -31,7 +33,6 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
         
         //registers the article cell nib
        articleTableView.register(UINib(nibName: "ArticleCell", bundle: nil), forCellReuseIdentifier: "ArticleCustomCell")
-        
         // brings over the data from the selected cell
         newsManager.getNews {
             data in
@@ -41,8 +42,10 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.articleTableView.reloadData()
             }
         }
-
+        
     }
+   
+  
     
     // table view delegate methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,17 +54,20 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //uses the custom cell xb
+        //uses the custom cell xib
         let cell = articleTableView.dequeueReusableCell(withIdentifier: "ArticleCustomCell", for: indexPath) as! ArticleCell
         
+
         let theNews = theArticles[indexPath.row]
         //populates the UIlabels and UIImage
+        cell.imageArticle.load(urlString: theNews.urlToImage!)
         cell.titleArticle?.text = theNews.title
         cell.descArticle.text = theNews.description
-        cell.imageArticle.load(urlString: theNews.urlToImage!)
-       
+        
+         
         return cell 
     }
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //identifies the seugue to be used
@@ -87,13 +93,13 @@ class ArticleViewController: UIViewController, UITableViewDataSource, UITableVie
         
         
     }
-    
 }
 
-extension UIImageView {
-    
+
+extension UIImageView  {
+
     //creates method to get image
-    func load(urlString: String){
+   func load(urlString: String){
         guard let url = URL(string: urlString) else {
             return
         }
@@ -104,11 +110,15 @@ extension UIImageView {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         self?.image = image
+
                     }
                 }
             }
         }
     }
-    
+
 }
+
+
+
 

@@ -35,7 +35,10 @@ struct NewsManager {
             } catch {
                 print("error")
             }
+            
         } .resume()
         
     }
 }
+
+
