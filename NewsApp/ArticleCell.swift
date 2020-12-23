@@ -24,11 +24,11 @@ class ArticleCell: UITableViewCell {
         super.awakeFromNib()
         
         
-    
-    
-        imageArticle.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
-        imageArticle.image = UIImage(named: "Trash_Icon")
         
+        imageArticle.frame = CGRect(x: 0, y: 0, width: 346, height: 225)
+      
+        imageArticle.image = UIImage(named: "2ndblackSquare")
+
     
     }
 
