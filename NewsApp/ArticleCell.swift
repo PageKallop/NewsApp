@@ -25,8 +25,10 @@ class ArticleCell: UITableViewCell {
         
         
         
-        imageArticle.frame = CGRect(x: 0, y: 0, width: 346, height: 225)
-      
+
+        
+        imageArticle.frame.size = CGSize(width: 225, height: 346)
+       // creates placeholder image
         imageArticle.image = UIImage(named: "2ndblackSquare")
 
     
